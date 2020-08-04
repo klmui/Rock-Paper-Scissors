@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,12 +17,17 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     ImageView selectView1;
     ImageView selectView2;
+
     TextView winnerText;
     TextView score1;
     TextView score2;
+
     Button playAgain;
     Button winnerBtn;
     Button randomGameBtn;
+    Button randomBtn1;
+    Button randomBtn2;
+
     Random rand;
 
     @Override
@@ -43,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         selectView1.setTag("empty");
         selectView2.setTag("empty");
+
+        randomBtn1 = (Button) findViewById(R.id.random1);
+        randomBtn2 = (Button) findViewById(R.id.random2);
 
         rand = new Random();
     }
@@ -207,5 +216,12 @@ public class MainActivity extends AppCompatActivity {
         randomGameBtn.setEnabled(true);
         winnerText.setVisibility(View.INVISIBLE);
         playAgain.setVisibility(View.INVISIBLE);
+    }
+
+    public void randomGame(View view) {
+        winnerBtn.setEnabled(false);
+        randomBtnOnClick(randomBtn1);
+        randomBtnOnClick(randomBtn2);
+        determineWinner(winnerBtn);
     }
 }
